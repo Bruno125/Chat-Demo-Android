@@ -1,7 +1,7 @@
-package com.brunoaybar.abytest.data
+package com.brunoaybar.chatdemos.data
 
-import com.brunoaybar.abytest.data.impl.AblyChatRepository
-import com.brunoaybar.abytest.data.impl.PubNubRepository
+import com.brunoaybar.chatdemos.data.impl.AblyChatRepository
+import com.brunoaybar.chatdemos.data.impl.PubNubRepository
 
 enum class ChatProviders{
     FIREBASE,

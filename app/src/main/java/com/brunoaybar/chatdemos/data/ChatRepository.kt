@@ -1,4 +1,4 @@
-package com.brunoaybar.abytest.data
+package com.brunoaybar.chatdemos.data
 
 import io.reactivex.Flowable
 

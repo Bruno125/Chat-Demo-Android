@@ -1,4 +1,4 @@
-package com.brunoaybar.abytest;
+package com.brunoaybar.chatdemos;
 
 import org.junit.Test;
 

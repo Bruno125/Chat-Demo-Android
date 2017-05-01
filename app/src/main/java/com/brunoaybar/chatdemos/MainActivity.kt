@@ -1,4 +1,4 @@
-package com.brunoaybar.abytest
+package com.brunoaybar.chatdemos
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -6,13 +6,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.EditText
-import com.brunoaybar.abytest.data.ChatFactory
-import com.brunoaybar.abytest.data.ChatProviders
-import com.brunoaybar.abytest.data.ChatRepository
+import com.brunoaybar.chatdemos.data.ChatFactory
+import com.brunoaybar.chatdemos.data.ChatProviders
+import com.brunoaybar.chatdemos.data.ChatRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import com.brunoaybar.abytest.R.id.textsRecycler
+import com.brunoaybar.chatdemos.R.id.textsRecycler
 
 
 

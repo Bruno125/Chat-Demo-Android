@@ -1,12 +1,12 @@
-package com.brunoaybar.abytest.data.impl
+package com.brunoaybar.chatdemos.data.impl
 
-import com.brunoaybar.abytest.data.ChatRepository
-import com.brunoaybar.abytest.data.Message
+import com.brunoaybar.chatdemos.data.ChatRepository
+import com.brunoaybar.chatdemos.data.Message
 import io.reactivex.Flowable
 import android.support.v4.app.NotificationCompat.getCategory
 import io.reactivex.internal.util.NotificationLite.isError
 import android.R.id.message
-import com.brunoaybar.abytest.data.ChatUtils
+import com.brunoaybar.chatdemos.data.ChatUtils
 import com.pubnub.api.PNConfiguration
 import com.pubnub.api.PubNub
 import com.pubnub.api.callbacks.PNCallback

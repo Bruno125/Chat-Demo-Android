@@ -1,4 +1,4 @@
-package com.brunoaybar.abytest;
+package com.brunoaybar.chatdemos;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.brunoaybar.abytest.data.Message;
+import com.brunoaybar.chatdemos.data.Message;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class TextsAdapter extends RecyclerView.Adapter<TextsAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_text_entry,null));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_text_entry,parent));
     }
 
     @Override

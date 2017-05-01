@@ -1,7 +1,7 @@
-package com.brunoaybar.abytest.data.impl
+package com.brunoaybar.chatdemos.data.impl
 
-import com.brunoaybar.abytest.data.ChatRepository
-import com.brunoaybar.abytest.data.Message
+import com.brunoaybar.chatdemos.data.ChatRepository
+import com.brunoaybar.chatdemos.data.Message
 import io.reactivex.Flowable
 import io.ably.lib.realtime.AblyRealtime
 import io.reactivex.FlowableOnSubscribe

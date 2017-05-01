@@ -1,4 +1,4 @@
-package com.brunoaybar.abytest;
+package com.brunoaybar.chatdemos;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
