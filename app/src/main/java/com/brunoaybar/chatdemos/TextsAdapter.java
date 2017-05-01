@@ -33,7 +33,7 @@ public class TextsAdapter extends RecyclerView.Adapter<TextsAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_text_entry,parent));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_text_entry,null));
     }
 
     @Override

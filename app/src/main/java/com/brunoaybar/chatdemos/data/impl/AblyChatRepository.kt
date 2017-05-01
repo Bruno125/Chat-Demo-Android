@@ -1,6 +1,7 @@
 package com.brunoaybar.chatdemos.data.impl
 
 import com.brunoaybar.chatdemos.data.ChatRepository
+import com.brunoaybar.chatdemos.data.ChatUtils
 import com.brunoaybar.chatdemos.data.Message
 import io.reactivex.Flowable
 import io.ably.lib.realtime.AblyRealtime
@@ -19,14 +20,14 @@ class AblyChatRepository() : ChatRepository{
     init {
         channel.subscribe {
             val content = it.data.toString()
-            val message = Message(content, "1s", "${content.toByteArray().size} bytes")
+            val message = ChatUtils.parseMessage(content)
             messageSubject.onNext(message)
         }
     }
 
 
     override fun send(message: String) {
-        channel.publish("send",message)
+        channel.publish("send",ChatUtils.createData(message))
     }
 
     override fun receive(): Flowable<Message> {

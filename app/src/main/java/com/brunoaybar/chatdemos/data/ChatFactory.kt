@@ -1,6 +1,7 @@
 package com.brunoaybar.chatdemos.data
 
 import com.brunoaybar.chatdemos.data.impl.AblyChatRepository
+import com.brunoaybar.chatdemos.data.impl.FirebaseChatRepository
 import com.brunoaybar.chatdemos.data.impl.PubNubRepository
 
 enum class ChatProviders{
@@ -17,6 +18,7 @@ class ChatFactory {
         fun create(provider: ChatProviders): ChatRepository{
             when(provider){
                 ChatProviders.ABLY          -> return createAbly()
+                ChatProviders.FIREBASE      -> return createFirebase()
                 ChatProviders.PUBNUB        -> return createPubNub()
                 else                        -> return createAbly()
             }
@@ -30,5 +32,8 @@ class ChatFactory {
             return PubNubRepository()
         }
 
+        private fun createFirebase(): FirebaseChatRepository{
+            return FirebaseChatRepository()
+        }
     }
 }

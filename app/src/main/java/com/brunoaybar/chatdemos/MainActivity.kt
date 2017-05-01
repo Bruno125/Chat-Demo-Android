@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var sendButton: Button
     private var adapter: TextsAdapter? = null
 
-    val repository: ChatRepository = ChatFactory.create(ChatProviders.PUBNUB)
+    val repository: ChatRepository = ChatFactory.create(ChatProviders.ABLY)
     val disposables = CompositeDisposable()
 
 
