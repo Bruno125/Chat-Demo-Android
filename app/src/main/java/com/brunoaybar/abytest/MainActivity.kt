@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var sendButton: Button
     private var adapter: TextsAdapter? = null
 
-    val repository: ChatRepository = ChatFactory.create(ChatProviders.ABLY)
+    val repository: ChatRepository = ChatFactory.create(ChatProviders.PUBNUB)
     val disposables = CompositeDisposable()
 
 
@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
         adapter = TextsAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        title = repository.name
+
     }
 
 

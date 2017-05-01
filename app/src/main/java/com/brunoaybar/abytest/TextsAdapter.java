@@ -27,7 +27,7 @@ public class TextsAdapter extends RecyclerView.Adapter<TextsAdapter.ViewHolder> 
     }
 
     public void add(Message entry){
-        entries.add(entry);
+        entries.add(0,entry);
         notifyDataSetChanged();
     }
 

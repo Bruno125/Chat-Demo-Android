@@ -11,6 +11,7 @@ import io.reactivex.subjects.PublishSubject
 
 
 class AblyChatRepository() : ChatRepository{
+    override val name: String get() = "Ably Chat"
     private val realtime: AblyRealtime = AblyRealtime("gZ_l9g.y5d3Tw:kSJRo2CIeXcw9w2p")
     private val channel = realtime.channels.get("chat")
     private val messageSubject: PublishSubject<Message> = PublishSubject.create()
