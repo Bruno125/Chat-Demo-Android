@@ -28,8 +28,8 @@ class PubNubRepository() : ChatRepository {
 
     init{
         val pnConfiguration = PNConfiguration()
-        pnConfiguration.setSubscribeKey("sub-c-f70f1c40-2d2c-11e7-9488-0619f8945a4f")
-        pnConfiguration.setPublishKey("pub-c-e1c91660-d62c-41a5-88c3-9b9e2d71ce3a")
+        pnConfiguration.setSubscribeKey("sub-c-010f45da-2d2d-11e7-a696-0619f8945a4f")
+        pnConfiguration.setPublishKey("pub-c-8aa801f5-05d1-42bd-9c6f-6ee9e829f37f")
 
         pubnub = PubNub(pnConfiguration)
 
@@ -56,7 +56,14 @@ class PubNubRepository() : ChatRepository {
 
             override fun message(pubnub: PubNub, result: PNMessageResult) {
                 // Handle new message stored in message.message
-                result.message.asString.let { data ->
+                var data : String?
+                try{
+                    data = result.message.asString
+                }catch (e: Exception){
+                    data = result.message.toString().replace("\\\"","\"")
+                }
+
+                if(data != null){
                     val message = ChatUtils.parseMessage(data)
                     if (message != null){
                         messageSubject.onNext(message)
