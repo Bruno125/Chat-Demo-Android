@@ -13,7 +13,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import com.brunoaybar.chatdemos.R.id.textsRecycler
-
+import com.brunoaybar.chatdemos.data.data.ChatInjection
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,10 +23,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var sendButton: Button
     private var adapter: TextsAdapter? = null
 
-    val repository: ChatRepository = ChatFactory.create(ChatProviders.PUBNUB)
+    val repository: ChatRepository = ChatInjection.repository
     val disposables = CompositeDisposable()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -18,6 +18,30 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors{
+        general{
+
+        }
+
+        firebase{
+            applicationIdSuffix ".firebase"
+            versionNameSuffix "-firebase"
+
+        }
+
+        ably{
+            applicationIdSuffix ".ably"
+            versionNameSuffix "-ably"
+
+        }
+
+        pubnub{
+            applicationIdSuffix ".pubnub"
+            versionNameSuffix "-pubnub"
+        }
+
+    }
 }
 
 dependencies {
