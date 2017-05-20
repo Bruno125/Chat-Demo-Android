@@ -21,24 +21,30 @@ android {
 
     productFlavors{
         general{
-
+            resValue "string", "app_name", "Demo Chat"
         }
 
         firebase{
             applicationIdSuffix ".firebase"
             versionNameSuffix "-firebase"
-
+            resValue "string", "app_name", "Demo Firebase"
         }
 
         ably{
             applicationIdSuffix ".ably"
             versionNameSuffix "-ably"
-
+            resValue "string", "app_name", "Demo Ably"
         }
 
         pubnub{
             applicationIdSuffix ".pubnub"
             versionNameSuffix "-pubnub"
+            resValue "string", "app_name", "Demo Pubnub"
+        }
+
+        lighstreamer{
+            applicationIdSuffix ".lightstreamer"
+            versionNameSuffix "-lightstreamer"
         }
 
     }

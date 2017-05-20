@@ -40,10 +40,10 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "283737350670-5momrcd7vp1c3gf99v3ki32dmd1j545g.apps.googleusercontent.com",
+              "client_id": "283737350670-o0pn1a7ug458ol5orvsoiik8qtavnphi.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.brunoaybar.FirebaseTest"
+                "bundle_id": "com.brunoaybar.chatdemos"
               }
             },
             {
@@ -62,6 +62,37 @@
         "mobilesdk_app_id": "1:283737350670:android:67717163ddc1f383",
         "android_client_info": {
           "package_name": "com.brunoaybar.chatdemos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283737350670-gg90045stbj4jl7jv5ibaukadvlfr05a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYySpFOdoPkLPOU6i6lGzVQWZIaP2Uu18"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283737350670:android:e92c0af7b986c9a2",
+        "android_client_info": {
+          "package_name": "com.brunoaybar.chatdemos.firebase"
         }
       },
       "oauth_client": [
