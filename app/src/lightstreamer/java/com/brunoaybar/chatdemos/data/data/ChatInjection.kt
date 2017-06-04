@@ -6,6 +6,6 @@ import com.brunoaybar.chatdemos.data.ChatRepository
 
 class ChatInjection{
     companion object{
-        val repository: ChatRepository = ChatFactory.create(ChatProviders.ABLY)
+        val repository: ChatRepository = ChatFactory.create(ChatProviders.LIGHTSTREAMER)
     }
 }

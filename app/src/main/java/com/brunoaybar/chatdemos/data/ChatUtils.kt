@@ -1,5 +1,6 @@
 package com.brunoaybar.chatdemos.data
 
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import org.json.JSONObject
@@ -36,6 +37,7 @@ class ChatUtils{
             if (data.timestamp.isNotEmpty()){
                 dateFormatter.parse(data.timestamp).let { sendDate ->
                     val now = Date()
+                    Log.i("CHAT DEMO","Now: ${dateFormatter.format(now)}   -  timestamp: ${dateFormatter.format(sendDate)}")
                     delay = "${now.time - sendDate.time} ms"
                 }
             }

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "**REMOVED**",
         "android_client_info": {
-          "package_name": "com.brunoaybar.chatdemos.ably"
+          "package_name": "com.brunoaybar.chatdemos.lightstreamer"
         }
       },
       "oauth_client": [

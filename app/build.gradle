@@ -42,11 +42,21 @@ android {
             resValue "string", "app_name", "Demo Pubnub"
         }
 
-        lighstreamer{
+        lightstreamer{
             applicationIdSuffix ".lightstreamer"
             versionNameSuffix "-lightstreamer"
+            resValue "string", "app_name", "Demo Lightstreamer"
         }
 
+    }
+
+
+    packagingOptions {
+        pickFirst 'build.number'
+        pickFirst 'version.number'
+        pickFirst 'compatibility_version.number'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
     }
 }
 
@@ -67,7 +77,7 @@ dependencies {
     compile 'io.ably:ably-android:1.0.0'
     compile group: 'com.pubnub', name: 'pubnub-gson', version: '4.6.2'
     compile 'com.google.firebase:firebase-database:10.2.0'
-
+    compile 'com.lightstreamer:ls-android-client:3.0.0'
 }
 repositories {
     mavenCentral()

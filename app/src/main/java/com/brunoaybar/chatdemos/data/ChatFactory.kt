@@ -2,6 +2,7 @@ package com.brunoaybar.chatdemos.data
 
 import com.brunoaybar.chatdemos.data.impl.AblyChatRepository
 import com.brunoaybar.chatdemos.data.impl.FirebaseChatRepository
+import com.brunoaybar.chatdemos.data.impl.LightstreamerRepository
 import com.brunoaybar.chatdemos.data.impl.PubNubRepository
 
 enum class ChatProviders{
@@ -9,7 +10,8 @@ enum class ChatProviders{
     ABLY,
     P2PKIT,
     ZEROMQ,
-    PUBNUB
+    PUBNUB,
+    LIGHTSTREAMER
 }
 
 class ChatFactory {
@@ -20,6 +22,7 @@ class ChatFactory {
                 ChatProviders.ABLY          -> return createAbly()
                 ChatProviders.FIREBASE      -> return createFirebase()
                 ChatProviders.PUBNUB        -> return createPubNub()
+                ChatProviders.LIGHTSTREAMER -> return createLightstreamer()
                 else                        -> return createAbly()
             }
         }
@@ -34,6 +37,10 @@ class ChatFactory {
 
         private fun createFirebase(): FirebaseChatRepository{
             return FirebaseChatRepository()
+        }
+
+        private fun createLightstreamer(): LightstreamerRepository{
+            return LightstreamerRepository()
         }
     }
 }
