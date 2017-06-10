@@ -1,9 +1,7 @@
 package com.brunoaybar.chatdemos.data
 
-import com.brunoaybar.chatdemos.data.impl.AblyChatRepository
-import com.brunoaybar.chatdemos.data.impl.FirebaseChatRepository
-import com.brunoaybar.chatdemos.data.impl.LightstreamerRepository
-import com.brunoaybar.chatdemos.data.impl.PubNubRepository
+import android.content.Context
+import com.brunoaybar.chatdemos.data.impl.*
 
 enum class ChatProviders{
     FIREBASE,
@@ -17,12 +15,13 @@ enum class ChatProviders{
 class ChatFactory {
     companion object{
 
-        fun create(provider: ChatProviders): ChatRepository{
+        fun create(context: Context, provider: ChatProviders): ChatRepository{
             when(provider){
                 ChatProviders.ABLY          -> return createAbly()
                 ChatProviders.FIREBASE      -> return createFirebase()
                 ChatProviders.PUBNUB        -> return createPubNub()
                 ChatProviders.LIGHTSTREAMER -> return createLightstreamer()
+                ChatProviders.P2PKIT        -> return createP2PKit(context)
                 else                        -> return createAbly()
             }
         }
@@ -41,6 +40,10 @@ class ChatFactory {
 
         private fun createLightstreamer(): LightstreamerRepository{
             return LightstreamerRepository()
+        }
+
+        private fun createP2PKit(context: Context): P2PKitChatRepository{
+            return P2PKitChatRepository(context)
         }
     }
 }

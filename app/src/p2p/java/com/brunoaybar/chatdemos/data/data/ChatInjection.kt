@@ -7,6 +7,6 @@ import com.brunoaybar.chatdemos.data.ChatRepository
 
 class ChatInjection{
     companion object{
-        fun getRepo(context: Context): ChatRepository = ChatFactory.create(context,ChatProviders.PUBNUB)
+        fun getRepo(context: Context): ChatRepository = ChatFactory.create(context,ChatProviders.P2PKIT)
     }
 }

@@ -23,12 +23,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var sendButton: Button
     private var adapter: TextsAdapter? = null
 
-    val repository: ChatRepository = ChatInjection.repository
+    lateinit var repository: ChatRepository
     val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        repository = ChatInjection.getRepo(this)
 
         textField = findViewById(R.id.eteText) as EditText
         recyclerView = findViewById(R.id.textsRecycler) as RecyclerView
