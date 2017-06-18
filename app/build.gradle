@@ -54,6 +54,12 @@ android {
             resValue "string", "app_name", "Demo P2PKit"
         }
 
+        rabbitmq{
+            applicationIdSuffix ".rabbitmq"
+            versionNameSuffix "-rabbitmq"
+            resValue "string", "app_name", "Demo RabbitMQ"
+        }
+
     }
 
 
@@ -61,6 +67,7 @@ android {
         pickFirst 'build.number'
         pickFirst 'version.number'
         pickFirst 'compatibility_version.number'
+        pickFirst 'version.properties'
         exclude 'META-INF/INDEX.LIST'
         exclude 'META-INF/io.netty.versions.properties'
     }
@@ -85,6 +92,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:10.2.0'
     compile 'com.lightstreamer:ls-android-client:3.0.0'
     compile 'ch.uepaa.p2p:p2pkit-android:2.0.6'
+    compile 'com.rabbitmq:amqp-client:4.1.1'
 }
 repositories {
     mavenCentral()

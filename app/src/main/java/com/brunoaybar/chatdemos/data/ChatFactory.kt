@@ -9,7 +9,8 @@ enum class ChatProviders{
     P2PKIT,
     ZEROMQ,
     PUBNUB,
-    LIGHTSTREAMER
+    LIGHTSTREAMER,
+    RABBITMQ
 }
 
 class ChatFactory {
@@ -22,6 +23,7 @@ class ChatFactory {
                 ChatProviders.PUBNUB        -> return createPubNub()
                 ChatProviders.LIGHTSTREAMER -> return createLightstreamer()
                 ChatProviders.P2PKIT        -> return createP2PKit(context)
+                ChatProviders.RABBITMQ      -> return createRabbitMQ()
                 else                        -> return createAbly()
             }
         }
@@ -44,6 +46,10 @@ class ChatFactory {
 
         private fun createP2PKit(context: Context): P2PKitChatRepository{
             return P2PKitChatRepository(context)
+        }
+
+        private fun createRabbitMQ(): RabbitMQRepository{
+            return RabbitMQRepository()
         }
     }
 }
