@@ -3,7 +3,6 @@ package com.brunoaybar.chatdemos.data.impl
 import android.util.Log
 import com.brunoaybar.chatdemos.data.ChatRepository
 
-import com.rabbitmq.client.ConnectionFactory
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.subjects.PublishSubject
@@ -11,16 +10,21 @@ import java.util.concurrent.LinkedBlockingDeque
 import android.os.Bundle
 import android.os.Handler
 import com.brunoaybar.chatdemos.data.ChatUtils
-import com.rabbitmq.client.QueueingConsumer
 import com.brunoaybar.chatdemos.data.Message
-
+import com.rabbitmq.client.*
+import java.io.IOException
+import com.rabbitmq.client.ConnectionFactory
 
 class RabbitMQRepository() : ChatRepository{
     override val name: String get() = "RabbitMQ"
 
-    private val HOST = "10.11.80.78"
+    private val HOST = "10.11.80.94"
     private val PORT = 5673
     private val URI = "amqp://$HOST:$PORT"
+
+    private val EXCHANGE_NAME = "chat"
+
+    private lateinit var connection : Connection
 
     val factory = ConnectionFactory().apply {
         isAutomaticRecoveryEnabled = false
@@ -32,8 +36,6 @@ class RabbitMQRepository() : ChatRepository{
     }
 
     init {
-        publishToAMQP()
-
         subscribe(object : Handler() {
             override fun handleMessage(msg: android.os.Message) {
                 val message = msg.data.getString("msg")
@@ -57,51 +59,21 @@ class RabbitMQRepository() : ChatRepository{
     //region //Publish
 
     private fun publishMessage(message: String){
+        val channel = connection.createChannel()
+
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout")
+
+        channel.basicPublish(EXCHANGE_NAME, "", null, message.toByteArray())
+        println(" [x] Sent '$message'")
+
+        channel.close()
+
         try {
             Log.d("RabbitMQ","[q] " + message);
             queue.putLast(message);
         } catch (e: Exception) {
 
         }
-    }
-
-    private lateinit var publishThread: Thread
-    fun publishToAMQP() {
-        publishThread = Thread(Runnable {
-            while (true) {
-                try {
-                    val connection = factory.newConnection()
-                    val ch = connection.createChannel()
-                    ch.confirmSelect()
-
-                    while (true) {
-                        val message = queue.takeFirst()
-                        try {
-                            ch.basicPublish("amq.fanout", "chat", null, message.toByteArray())
-                            Log.d("", "[s] " + message)
-                            ch.waitForConfirmsOrDie()
-                        } catch (e: Exception) {
-                            Log.d("", "[f] " + message)
-                            queue.putFirst(message)
-                            throw e
-                        }
-
-                    }
-                } catch (e: InterruptedException) {
-                    break
-                } catch (e: Exception) {
-                    Log.d("", "Connection broken: " + e.javaClass.name)
-                    try {
-                        Thread.sleep(5000) //sleep and then try again
-                    } catch (e1: InterruptedException) {
-                        break
-                    }
-
-                }
-
-            }
-        })
-        publishThread.start()
     }
 
     //endregion
@@ -112,41 +84,31 @@ class RabbitMQRepository() : ChatRepository{
 
     fun subscribe(handler: Handler) {
         subscribeThread = Thread(Runnable {
-            while (true) {
-                try {
-                    val connection = factory.newConnection()
-                    val channel = connection.createChannel()
-                    channel.basicQos(1)
-                    val q = channel.queueDeclare()
-                    channel.queueBind(q.queue, "amq.fanout", "chat")
-                    val consumer = QueueingConsumer(channel)
-                    channel.basicConsume(q.queue, true, consumer)
+            connection = factory.newConnection()
+            val channel = connection.createChannel()
 
-                    while (true) {
-                        val delivery = consumer.nextDelivery()
-                        val message = String(delivery.body)
-                        Log.d("", "[r] " + message)
-                        val msg = handler.obtainMessage()
-                        val bundle = Bundle()
-                        bundle.putString("msg", message)
-                        msg.setData(bundle)
-                        handler.sendMessage(msg)
-                    }
-                } catch (e: InterruptedException) {
-                    break
-                } catch (e1: Exception) {
-                    Log.d("", "Connection broken: " + e1.javaClass.name)
-                    try {
-                        Thread.sleep(5000) //sleep and then try again
-                    } catch (e: InterruptedException) {
-                        break
-                    }
+            channel.exchangeDeclare(EXCHANGE_NAME, "fanout")
+            val queueName = channel.queueDeclare().queue
+            channel.queueBind(queueName, EXCHANGE_NAME, "")
 
+            val consumer = object : DefaultConsumer(channel) {
+                @Throws(IOException::class)
+                override fun handleDelivery(consumerTag: String, envelope: Envelope,
+                                            properties: AMQP.BasicProperties, body: ByteArray) {
+                    val message = String(body)
+                    println(" [x] Received '$message'")
+                    val msg = handler.obtainMessage()
+                    val bundle = Bundle()
+                    bundle.putString("msg", message)
+                    msg.data = bundle
+                    handler.sendMessage(msg)
                 }
-
             }
+
+            channel.basicConsume(queueName, true, consumer)
         })
         subscribeThread.start()
+
     }
 
     //endregion
