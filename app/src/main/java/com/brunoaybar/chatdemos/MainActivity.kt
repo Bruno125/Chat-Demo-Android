@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import com.brunoaybar.chatdemos.data.ChatFactory
 import com.brunoaybar.chatdemos.data.ChatProviders
 import com.brunoaybar.chatdemos.data.ChatRepository
@@ -20,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var textField: EditText
     lateinit var recyclerView: RecyclerView
-    lateinit var sendButton: Button
     private var adapter: TextsAdapter? = null
 
     lateinit var repository: ChatRepository
@@ -33,9 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         textField = findViewById(R.id.eteText) as EditText
         recyclerView = findViewById(R.id.textsRecycler) as RecyclerView
-        sendButton = findViewById(R.id.sendButton) as Button
 
-        sendButton.setOnClickListener {
+        (findViewById(R.id.sendButton)).setOnClickListener {
             val text = textField.text.toString().trim()
             if(text.isNotEmpty()){
                 repository.send(text)
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         title = repository.name
 
     }
-
 
     override fun onResume() {
         super.onResume()

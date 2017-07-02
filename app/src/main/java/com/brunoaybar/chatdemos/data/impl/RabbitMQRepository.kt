@@ -35,15 +35,17 @@ class RabbitMQRepository() : ChatRepository{
         setUri(URI)
     }
 
-    init {
-        subscribe(object : Handler() {
-            override fun handleMessage(msg: android.os.Message) {
-                val message = msg.data.getString("msg")
-                ChatUtils.parseMessage(message)?.let {
-                    messageSubject.onNext(it)
-                }
+    val handler = object : Handler() {
+        override fun handleMessage(msg: android.os.Message) {
+            val message = msg.data.getString("msg")
+            ChatUtils.parseMessage(message)?.let {
+                messageSubject.onNext(it)
             }
-        })
+        }
+    }
+
+    init {
+        subscribe(handler)
     }
 
     private val messageSubject: PublishSubject<Message> = PublishSubject.create()
@@ -84,28 +86,34 @@ class RabbitMQRepository() : ChatRepository{
 
     fun subscribe(handler: Handler) {
         subscribeThread = Thread(Runnable {
-            connection = factory.newConnection()
-            val channel = connection.createChannel()
+            try{
+                connection = factory.newConnection()
+                val channel = connection.createChannel()
 
-            channel.exchangeDeclare(EXCHANGE_NAME, "fanout")
-            val queueName = channel.queueDeclare().queue
-            channel.queueBind(queueName, EXCHANGE_NAME, "")
+                channel.exchangeDeclare(EXCHANGE_NAME, "fanout")
+                val queueName = channel.queueDeclare().queue
+                channel.queueBind(queueName, EXCHANGE_NAME, "")
 
-            val consumer = object : DefaultConsumer(channel) {
-                @Throws(IOException::class)
-                override fun handleDelivery(consumerTag: String, envelope: Envelope,
-                                            properties: AMQP.BasicProperties, body: ByteArray) {
-                    val message = String(body)
-                    println(" [x] Received '$message'")
-                    val msg = handler.obtainMessage()
-                    val bundle = Bundle()
-                    bundle.putString("msg", message)
-                    msg.data = bundle
-                    handler.sendMessage(msg)
+                val consumer = object : DefaultConsumer(channel) {
+                    @Throws(IOException::class)
+                    override fun handleDelivery(consumerTag: String, envelope: Envelope,
+                                                properties: AMQP.BasicProperties, body: ByteArray) {
+                        val message = String(body)
+                        println(" [x] Received '$message'")
+                        val msg = handler.obtainMessage()
+                        val bundle = Bundle()
+                        bundle.putString("msg", message)
+                        msg.data = bundle
+                        handler.sendMessage(msg)
+                    }
                 }
-            }
 
-            channel.basicConsume(queueName, true, consumer)
+                channel.basicConsume(queueName, true, consumer)
+            }catch (e: Exception){
+                Handler().postDelayed({
+                    subscribe(handler)
+                }, 5000)
+            }
         })
         subscribeThread.start()
 
