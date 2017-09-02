@@ -1,4 +1,5 @@
 <resources>
     <string name="txt_size"><b>Tamaño: </b></string>
     <string name="txt_delay"><b>Tiempo de envío: </b></string>
+    <string name="txt_network">Network type</string>
 </resources>
