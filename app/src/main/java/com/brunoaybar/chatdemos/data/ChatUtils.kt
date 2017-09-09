@@ -28,7 +28,7 @@ class ChatUtils{
         }
 
         fun parseMessage(data: SendMessage): Message?{
-            var content = "--"; var delay = "--"; var size = ""
+            var content = "--"; var delay = 0L; var size = ""
             if(data.value.isNotEmpty()){
                 content = data.value
                 size = "${content.toByteArray().size} bytes"
@@ -38,10 +38,10 @@ class ChatUtils{
                 dateFormatter.parse(data.timestamp).let { sendDate ->
                     val now = Date()
                     Log.i("CHAT DEMO","Now: ${dateFormatter.format(now)}   -  timestamp: ${dateFormatter.format(sendDate)}")
-                    delay = "${now.time - sendDate.time} ms"
+                    delay = now.time - sendDate.time
                 }
             }
-            return Message(content,delay,size)
+            return Message(content,"$delay ms", delay ,size)
         }
 
     }

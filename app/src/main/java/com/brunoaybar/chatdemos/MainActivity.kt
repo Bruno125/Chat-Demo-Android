@@ -27,6 +27,7 @@ import android.net.NetworkInfo
 import android.net.ConnectivityManager
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.support.v7.app.AlertDialog
+import com.brunoaybar.chatdemos.utils.getRepository
 import com.brunoaybar.chatdemos.utils.open
 
 
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        repository = ChatInjection.getRepo(this)
+        repository = getRepository()
 
         textField = findViewById(R.id.eteText) as EditText
         recyclerView = findViewById(R.id.textsRecycler) as RecyclerView
@@ -142,5 +143,15 @@ class MainActivity : AppCompatActivity() {
                 }.show()
 
     }
+
+    private fun openSendActivity(){
+        open<SenderActivity>()
+    }
+
+    private fun openReceiverActivity(){
+
+    }
+
+
 
 }
