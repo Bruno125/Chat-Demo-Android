@@ -4,12 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 
-import com.brunoaybar.chatdemos.R
 import com.brunoaybar.chatdemos.data.Message
-import com.brunoaybar.chatdemos.utils.find
-import com.brunoaybar.chatdemos.utils.getRepository
+import com.brunoaybar.chatdemos.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import java.util.*
 
 class ReceiverActivity : AppCompatActivity() {
 
@@ -39,12 +38,20 @@ class ReceiverActivity : AppCompatActivity() {
 
         if(messages.size == EXPECTED_MESSAGES){
             disposables.clear()
-            calculateAverage()
+            shareResults()
         }
     }
 
-    private fun calculateAverage(){
+    private fun shareResults(){
+        val textToWrite = messages.asTabbedText()
+        val date = Date()
+        val fileName = "mediciones-$date.txt"
+        shareAsFile(textToWrite, fileName)
+    }
 
+    private fun List<Message>.asTabbedText(): String{
+        return mapIndexed { index, message -> "${index+1}\t${message.delayValue}" }
+                .reduce { a, b -> "$a\n$b" }
     }
 
     override fun onPause() {

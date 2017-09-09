@@ -29,6 +29,7 @@ import android.content.Context.CONNECTIVITY_SERVICE
 import android.support.v7.app.AlertDialog
 import com.brunoaybar.chatdemos.utils.getRepository
 import com.brunoaybar.chatdemos.utils.open
+import io.reactivex.disposables.Disposable
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private var adapter: TextsAdapter? = null
 
     lateinit var repository: ChatRepository
-    val disposables = CompositeDisposable()
+    var disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        disposables = CompositeDisposable()
         disposables.add(repository.receive()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
