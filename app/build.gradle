@@ -19,42 +19,42 @@ android {
         }
     }
 
-    productFlavors{
-        general{
+    productFlavors {
+        general {
             resValue "string", "app_name", "Demo Chat"
         }
 
-        firebase{
+        firebase {
             applicationIdSuffix ".firebase"
             versionNameSuffix "-firebase"
             resValue "string", "app_name", "Demo Firebase"
         }
 
-        ably{
+        ably {
             applicationIdSuffix ".ably"
             versionNameSuffix "-ably"
             resValue "string", "app_name", "Demo Ably"
         }
 
-        pubnub{
+        pubnub {
             applicationIdSuffix ".pubnub"
             versionNameSuffix "-pubnub"
             resValue "string", "app_name", "Demo Pubnub"
         }
 
-        lightstreamer{
+        lightstreamer {
             applicationIdSuffix ".lightstreamer"
             versionNameSuffix "-lightstreamer"
             resValue "string", "app_name", "Demo Lightstreamer"
         }
 
-        p2p{
+        p2p {
             applicationIdSuffix ".p2p"
             versionNameSuffix "-p2p"
             resValue "string", "app_name", "Demo P2PKit"
         }
 
-        rabbitmq{
+        rabbitmq {
             applicationIdSuffix ".rabbitmq"
             versionNameSuffix "-rabbitmq"
             resValue "string", "app_name", "Demo RabbitMQ"
@@ -78,21 +78,21 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile "io.reactivex.rxjava2:rxjava:2.0.9"
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
     //Technologies
-    compile 'io.ably:ably-android:1.0.0'
     compile group: 'com.pubnub', name: 'pubnub-gson', version: '4.6.2'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.9'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.ably:ably-android:1.0.0'
     compile 'com.google.firebase:firebase-database:10.2.0'
     compile 'com.lightstreamer:ls-android-client:3.0.0'
     compile 'ch.uepaa.p2p:p2pkit-android:2.0.6'
     compile 'com.rabbitmq:amqp-client:4.1.1'
+    testCompile 'junit:junit:4.12'
 }
 repositories {
     mavenCentral()

@@ -27,6 +27,7 @@ import android.net.NetworkInfo
 import android.net.ConnectivityManager
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.support.v7.app.AlertDialog
+import com.brunoaybar.chatdemos.utils.open
 
 
 class MainActivity : AppCompatActivity() {
@@ -80,6 +81,10 @@ class MainActivity : AppCompatActivity() {
             showNetworkType()
             true
         }
+        R.id.menu_item_test -> {
+            showTestModeAlert()
+            true
+        }
         else -> false
     }
 
@@ -121,6 +126,21 @@ class MainActivity : AppCompatActivity() {
                 .setTitle(R.string.txt_network)
                 .setMessage(msg)
                 .show()
+    }
+
+    private fun showTestModeAlert(){
+        val options = arrayOf(R.string.txt_test_mode_sender, R.string.txt_test_mode_receiver)
+
+        AlertDialog.Builder(this)
+                .setTitle(R.string.txt_test_mode_title)
+                .setItems(options.map { getString(it) }.toTypedArray()) { dialog, which ->
+                    when(options[which]){
+                        R.string.txt_test_mode_sender -> open<SenderActivity>()
+                        R.string.txt_test_mode_receiver -> open<ReceiverActivity>()
+                    }
+                    dialog.dismiss()
+                }.show()
+
     }
 
 }

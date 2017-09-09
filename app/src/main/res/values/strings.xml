@@ -2,4 +2,9 @@
     <string name="txt_size"><b>Tamaño: </b></string>
     <string name="txt_delay"><b>Tiempo de envío: </b></string>
     <string name="txt_network">Network type</string>
+    <string name="txt_test_mode_title">Modo de prueba</string>
+    <string name="txt_test_mode_receiver">Receptor</string>
+    <string name="txt_test_mode_sender">Emisor</string>
+
+
 </resources>

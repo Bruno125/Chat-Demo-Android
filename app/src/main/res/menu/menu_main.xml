@@ -8,4 +8,11 @@
         android:icon="@drawable/ic_network_wifi_white_24dp"
         app:showAsAction="always"/>
 
+
+    <item
+        android:id="@+id/menu_item_test"
+        android:title="@string/txt_network"
+        android:icon="@drawable/ic_icon_time"
+        app:showAsAction="always"/>
+
 </menu>
