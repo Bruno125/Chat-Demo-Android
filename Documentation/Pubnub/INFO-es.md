@@ -1,4 +1,4 @@
-# Firebase
+# Pubnub
 
 ## Introducción
 
@@ -7,7 +7,7 @@ mediante la creación de un chat de dispositivos cercanos.
 
 ## Definición de conceptos
 
-- __Pubnub__: es una implementación para servidores que permite múltiples formas de comunicación en tiempo real. Es lo suficientemente flexible para ser utilizaada en múltiples escenarios.
+- __Pubnub__: plataforma que provee APIs de mensajería instantánea para móviles, web, internet de las cosas, computadoras de escritorio y servidores, permitiendo establecer mensajería bidireccional de baja latencia en cualquier lugar del mundo. 
 
 ## Caracteristicas
 
@@ -50,6 +50,7 @@ val pubnub = PubNub(pnConfiguration)
 
 3. Suscribirse al canal , para poder realizar las operaciones que deseemos con el mensaje que recibamos
 
+```kotlin
 pubnub.addListener(object : SubscribeCallback() {
     override fun status(pubnub: PubNub, status: PNStatus) {
         ...
@@ -74,7 +75,7 @@ pubnub.subscribe().channels(Arrays.asList("your_channel_name")).execute()
 
 ```
 
-5. Para enviar mensajes, invocar el método `publish` sobre el objeto cliente:
+4. Para enviar mensajes, invocar el método `publish` sobre el objeto cliente:
 
 ```kotlin
 pubnub.publish().channel("chat")
