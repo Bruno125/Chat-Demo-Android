@@ -9,6 +9,7 @@ import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.LinkedBlockingDeque
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import com.brunoaybar.chatdemos.data.ChatUtils
 import com.brunoaybar.chatdemos.data.Message
 import com.rabbitmq.client.*
@@ -18,7 +19,7 @@ import com.rabbitmq.client.ConnectionFactory
 class RabbitMQRepository() : ChatRepository{
     override val name: String get() = "RabbitMQ"
 
-    private val HOST = "10.11.80.94"
+    private val HOST = "192.168.1.38"
     private val PORT = 5673
     private val URI = "amqp://$HOST:$PORT"
 
@@ -110,9 +111,8 @@ class RabbitMQRepository() : ChatRepository{
 
                 channel.basicConsume(queueName, true, consumer)
             }catch (e: Exception){
-                Handler().postDelayed({
-                    subscribe(handler)
-                }, 5000)
+                Thread.sleep(5000)
+                subscribe(handler)
             }
         })
         subscribeThread.start()

@@ -21,7 +21,7 @@ class SenderActivity : AppCompatActivity() {
     val disposables = CompositeDisposable()
 
     private var MESSAGES_INTERVAL = 100L
-    private var MESSAGES_AMOUNT = 100L
+    private var MESSAGES_AMOUNT = 50L
     private var INITIAL_DELAY = 500L
 
     override fun onCreate(savedInstanceState: Bundle?) {

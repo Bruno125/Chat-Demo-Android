@@ -14,7 +14,7 @@ class LightstreamerRepository : ChatRepository,
         ClientListener by LightstreamerListenerLogger{
     override val name: String get() = "Demo Lightstreamer"
 
-    val serverAddress = "http://10.11.80.88:8080"
+    val serverAddress = "http://192.168.1.38:8080"
     val subscription = Subscription("DISTINCT","chat_room", arrayOf("message", "raw_timestamp", "IP","nick")).apply {
         addListener(this@LightstreamerRepository)
         dataAdapter = "CHAT_ROOM"

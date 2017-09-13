@@ -14,7 +14,7 @@ class ReceiverActivity : AppCompatActivity() {
 
     val disposables = CompositeDisposable()
     private lateinit var counterTextView: TextView
-    private var EXPECTED_MESSAGES = 100
+    private var EXPECTED_MESSAGES = 50
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
