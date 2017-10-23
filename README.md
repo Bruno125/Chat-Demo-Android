@@ -1,13 +1,13 @@
 # Communication-Demo-Android
 
-Este proyecto se desarrolló teniendo en consideración que sin importar el comportamiento interno de cualquier tecnología que nos permita realizar una comunicación en tiempo real entre dispositivos móviles, las funcionalidades más básicas que cualquier de estas debería cumplir son:
+This project was developed considering that no matter the inner behavior of any technology that allows us to establish realtime communication between mobile devices, the most basic requirements they must fullfill are:
 
-- Envío de mensajes
-- Recepción de mensajes
+- Sending messages
+- Receiving messages
 
-## Definiendo la interfaz
+## Defining the interface
 
-Teniendo eso cuenta, creamos la interfaz `ChatRepository` que define dos funciones, una para el envío y otra para la recepción:
+Considering this, we create an interface `ChatRepository` that defines two methods, one to send and another to receive data:
 
 ```kotlin
 interface ChatRepository{
@@ -16,11 +16,11 @@ interface ChatRepository{
 }
 ```
 
-El método `send` permite al cliente enviar una cadena de texto, para que sea distribuido a los demás dispositivos.
+The `send` method allows the client to send an string of text, for itto be distributed to the other clients.
 
-El método `receive` devuelve un tipo de dato `Flowable<Message>`. Esto representa un flujo de mensajes, lo cual nos permite detectar cada vez que otro dispositivo nos haya enviado un mensaje. Para poder manejar el flujo de mensajes con `Flowable`, hacemos uso de la librería RxJava.
+The `receive` method returns `Flowable<Message>`. This represents an stream of messages, which will allow us to be notified each time another device emits a message. The `Flowable` class comes from the RxJava 2 library.
 
-Una vez definida la interfaz, la implementación para cada tecnología extenderá de esta interfaz. Hemos creado cinco implementaciones:
+Once the interface is defined, each technology will implement it using it's own dependencies. We have created 5 implementations:
 
 - AblyRepository
 - FirebaseRepository
@@ -28,11 +28,11 @@ Una vez definida la interfaz, la implementación para cada tecnología extender�
 - LightstreamerRepository
 - RabbitMQRepository
 
-## Creando las variantes
+## Build flavors
 
-Usaremos este mismo proyecto para generar las aplicaciones Android de cada tecnologías, garantizando que cada una de ellas se esté ejecutando bajo un escenario común.
+We'll use the same project to generate the Android apps for each technology. This way, we'll make sure that each one of them is executing on the same scenario.
 
-El primer paso es entrar al archivo build.gradle y definir cada una de las variaciones que podría tener el app
+The first step to setup the project es to go to the build.gradle file and define every flavor.
 
 ```
  productFlavors{
@@ -80,9 +80,9 @@ El primer paso es entrar al archivo build.gradle y definir cada una de las varia
 
 ```
 
-## Inyectando los repositorios
+## Injecting the Repository
 
-Creamos una carpeta para cada una de las tecnologías, al mismo nivel del módulo `app/src`. Dentro de estas, creamos la clase `ChatInjection`, la cual devolverá la implementación adecuada del repositorio. Por ejemplo:
+We'll create a folder for each technology, at the same level of the module `app/src`. Inside it, we'll create the class`ChatInjection`, which will return the implementation that match the technology. For example:
 
 ```
 class ChatInjection{
