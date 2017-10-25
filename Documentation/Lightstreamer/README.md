@@ -15,15 +15,15 @@ This project uses Lighstreamer Android SDK
 
 ### Sequence Diagram
 
-![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/documentation/Documentation/Firebase/Diagrams/Diagrama%20de%20secuencia-%20Firebase.png)
+![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/master/Documentation/Lightstreamer/Diagrams/Sequence%20Diagram%20Lightstreamer.png)
 
 ### Components Diagram
 
-![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/documentation/Documentation/Firebase/Diagrams/Diagrama%20de%20componentes%20Firebase.png)
+![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/master/Documentation/Lightstreamer/Diagrams/Components%20Diagram%20Lightstreamer.png)
 
 ### Deployment Diagram
 
-![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/documentation/Documentation/Firebase/Diagrams/Diagrama%20de%20despliegue.png)
+![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/master/Documentation/Lightstreamer/Diagrams/Deployment%20Diagram%20Lightstreamer.png)
 
 ## Implementation
 

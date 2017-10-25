@@ -15,15 +15,15 @@ This project uses the RabbitMQ Android SDK
 
 ### Sequence diagram
 
-![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/documentation/Documentation/RabbitMQ/Diagrams/Diagrama%20de%20secuencia-%20RabbitMQ.png)
+![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/master/Documentation/RabbitMQ/Diagrams/Sequence%20Diagram%20RabbitMQ.png)
 
 ### Component diagram
 
-![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/documentation/Documentation/RabbitMQ/Diagrams/Diagrama%20de%20componentes%20RabbitMQ.png)
+![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/master/Documentation/RabbitMQ/Diagrams/Components%20Diagram%20RabbitMQ.png)
 
 ### Deployment diagram
 
-![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/documentation/Documentation/RabbitMQ/Diagrams/Diagrama%20de%20despliege-%20RabbitMQ.png)
+![alt tag](https://raw.githubusercontent.com/Bruno125/Communication-Demo-Android/master/Documentation/RabbitMQ/Diagrams/Deployment%20diagram%20RabbitMQ.png)
 
 ## Implementation
 
